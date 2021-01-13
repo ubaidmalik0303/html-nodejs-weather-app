@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="search">
+            <form method="POST">
+                <input type="text" name="cityname" placeholder="Search City">
+            </form>
+        </div>
+        <div class="top">
+            <i class="{{icon}} pulse" style="font-size: 70px; text-align: center;"></i>
+            <h2>{{weather_condition}}</h2>
+        </div>
+        <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+        </div>
+        <div class="bottom">
+            <div class="city">
+                <h1>{{city}}, {{country}}</h1>
+            </div>
+            <div class="date-time">
+                <p id="date-time"></p>
+            </div>
+            <div class="weather">
+                <h1>{{temp}}°C</h1>
+            </div>
+            <div class="min-max">
+                <p>Min {{min_temp}}°C | Max {{max_temp}}°C</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        setInterval(() => {
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('date-time').innerHTML = `${days[date.getDay()]} | ${months[date.getMonth()]} ${date.getDate()} | ${hours + ':' + minutes + ampm}`
+        }, 1000)
+    </script>
+
+</body>
+
+</html>
